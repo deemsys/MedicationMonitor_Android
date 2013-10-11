@@ -1,5 +1,7 @@
 package com.example.medicationmonitor;
 
+import com.example.medicationmonitor.LoginDataBaseAdapter;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,7 +25,7 @@ public class RegisterActivity extends Activity {
     private EditText pass;
     private EditText confirmpass;
     
-  // LoginDataBaseAdapter patient;
+    LoginDataBaseAdapter loginDataBaseAdapter;
     private Button signup;
 
    
@@ -35,8 +37,8 @@ public class RegisterActivity extends Activity {
         setContentView(R.layout.register);
         
         
-     //   patient=new LoginDataBaseAdapter(this);
-	//	patient=patient.open();
+        loginDataBaseAdapter=new LoginDataBaseAdapter(this);
+		loginDataBaseAdapter=loginDataBaseAdapter.open();
 		
           registerValid();
           Spinner spinner = (Spinner) findViewById(R.id.spinner);
@@ -117,12 +119,12 @@ public class RegisterActivity extends Activity {
     }
 
     private void submitForm() {
-    	//String userName=username.getText().toString();
-		//String password=pass.getText().toString();
-		//String confirmPassword=confirmpass.getText().toString();
+    	String userName=username.getText().toString();
+		String password=pass.getText().toString();
+	//	String confirmPassword=confirmpass.getText().toString();
 		//String email1=email.getText().toString();
 		//String mob=mobile.getText().toString();
-    	//patient.insertEntry(userName, password);
+    	loginDataBaseAdapter.insertEntry(userName, password);
 	    Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_LONG).show();
 	    
 	    startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
@@ -140,13 +142,13 @@ public class RegisterActivity extends Activity {
         return ret;
     }
 
-   // @Override
-	//protected void onDestroy() {
+   @Override
+	protected void onDestroy() {
 		// TODO Auto-generated method stub
-		//super.onDestroy();
+		super.onDestroy();
 		
-		//patient.close();
-	//}
+		loginDataBaseAdapter.close();
+	}
 
 }
 
