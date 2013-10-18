@@ -7,24 +7,41 @@
     android:visibility="visible" >
 
     <TextView
+        android:id="@+id/signout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/signout" />
+
+    <TextView
         android:id="@+id/welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="63dp"
+        android:layout_alignBaseline="@+id/signout"
+        android:layout_alignBottom="@+id/signout"
+        android:layout_marginRight="88dp"
+        android:layout_toLeftOf="@+id/signout"
         android:text="@string/welcome" />
 
-    <TextView
-        android:id="@+id/signout"
-        android:text="Signout"
+    <ExpandableListView
+        android:id="@+id/expandableListView1"
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/signout"
+        android:layout_marginTop="14dp" >
+    </ExpandableListView>
+
+    <Button
+        android:id="@+id/medications"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/welcome"
-        android:layout_alignBottom="@+id/welcome"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="60dp"
-       />
-
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="15dp"
+        android:text="Medications" />
+   
 </RelativeLayout>
