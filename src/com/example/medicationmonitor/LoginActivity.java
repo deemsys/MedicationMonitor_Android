@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.widget.TextView;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 
 import android.widget.Toast;
@@ -28,23 +30,26 @@ public class LoginActivity extends Activity {
         signup=(Button)findViewById(R.id.signup);
         signin.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
-    			// TODO Auto-generated method stub
+    			
+    			
     			final TextView username =(TextView)findViewById(R.id.username);
         		final TextView password =(TextView)findViewById(R.id.password);
         		String uname = username.getText().toString();
         		String pass =  password.getText().toString();
+        		//String err="Invalid UserName or Password";
         		String storedPassword=loginDataBaseAdapter.getSinlgeEntry(uname);
         		if(!uname.equals("")  && !pass.equals("")&&pass.equals(storedPassword))
         			startActivity(new Intent(LoginActivity.this,welcomeActivity.class).putExtra("usr",(CharSequence)uname));
         		 else 
+        			
         			Toast.makeText(LoginActivity.this,"Invalid UserName or Password", Toast.LENGTH_LONG).show();
+        		 
+    		
     		}
 		});
 	
 	
-       
-        
-    signup.setOnClickListener(new View.OnClickListener() {
+       signup.setOnClickListener(new View.OnClickListener() {
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			
@@ -57,8 +62,21 @@ public class LoginActivity extends Activity {
 
     protected void onDestroy() {
 		super.onDestroy();
-	    // Close The Database
+	    
 		loginDataBaseAdapter.close();
-	}       
+	}
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        hideSoftKeyboard(LoginActivity.this);
+
+        return false;
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+
+        InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+    }
    
 }
