@@ -3,22 +3,26 @@ package com.example.medicationmonitor;
 import com.example.medicationmonitor.LoginDataBaseAdapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 
  
 public class RegisterActivity extends Activity {
-	
+	 String []mydata1={"0-10","11-20","21-30","31-40","41-50","51-60","61-70","71-80","81-90","<90"};
 	private EditText username;
     private EditText email;
     private EditText mobile;
@@ -42,11 +46,59 @@ public class RegisterActivity extends Activity {
 		
           registerValid();
           Spinner spinner = (Spinner) findViewById(R.id.spinner);
-          ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                    this, R.array.age_array, android.R.layout.simple_spinner_item);
-             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-           spinner.setAdapter(adapter);
+          spinner.setAdapter(new MyAdapter(this, R.layout.custom_spinner, mydata1));
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+             //       this, R.array.age_array, android.R.layout.simple_spinner_item);
+            // adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+          //pinner.setAdapter(adapter);
     }
+    
+    
+    public class MyAdapter extends ArrayAdapter<String>
+    {
+ 
+            public MyAdapter(Context context, int textViewResourceId, String[] objects) 
+            {
+                  super(context, textViewResourceId, objects);
+            }
+             
+             
+            @Override
+            public View getDropDownView(int position, View convertView,ViewGroup parent)
+            {
+            return getCustomView(position, convertView, parent);
+            }
+ 
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) 
+            {
+            return getCustomView(position, convertView, parent);
+            }
+ 
+        public View getCustomView(int position, View convertView, ViewGroup parent) 
+        {
+ 
+            LayoutInflater inflater=getLayoutInflater();
+            View row=inflater.inflate(R.layout.custom_spinner, parent, false);
+            TextView label=(TextView)row.findViewById(R.id.spintext);
+            label.setText(mydata1[position]);
+            return row;
+            }
+        
+        }
+    
+    
     private void registerValid() {
         username = (EditText) findViewById(R.id.username);
         
@@ -126,7 +178,8 @@ public class RegisterActivity extends Activity {
 		//String mob=mobile.getText().toString();
     	loginDataBaseAdapter.insertEntry(userName, password);
 	    Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_LONG).show();
-	    
+	  // DialogClass dgcls=null;
+	    //dgcls = new DialogClass(this,"Green","Account Successfully Created!");
 	    startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
 	    
     }
