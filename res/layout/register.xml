@@ -4,143 +4,191 @@
     xmlns:android2="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/registration"
-    android:fillViewport="true" >
+    android:background="@drawable/registrationnew" >
 
     <!-- Link to Login Screen -->
 
-    <RadioGroup
-        android2:id="@+id/radioGroup1"
-        android2:layout_width="wrap_content"
-        android2:layout_height="wrap_content"
-       
-        android2:layout_marginBottom="14dp"
-        android2:layout_marginRight="20dp" >
-
-        <Spinner
-            android2:id="@+id/spinner"
-            android2:layout_width="120dp"
-            android2:layout_height="40dp"
-            android2:layout_weight="1"
-            android2:prompt="@string/age_picker" />
-    </RadioGroup>
+    <Button
+        android:id="@+id/signupreg"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="60dp"
+        android:layout_height="23dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/signup"
+        android:gravity="center" />
 
     <EditText
-        android2:id="@+id/username"
-        android2:layout_width="110dp"
-        android2:layout_height="40dp"
-        android2:layout_alignLeft="@+id/signupreg"
+        android:id="@+id/country"
+        android:layout_width="110dp"
+        android:layout_height="20dp"
+        android:layout_above="@+id/signupreg"
+        android:layout_alignLeft="@+id/mobile"
+        android:layout_marginBottom="70dp"
+        android:background="@drawable/edittextrest"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Country"
+        android:textSize="14dp"
+        android2:inputType="text" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="110dp"
+        android:layout_height="20dp"
+        android:layout_above="@+id/mobile"
+        android:layout_alignLeft="@+id/mobile"
+        android:layout_marginBottom="34dp"
+        android:background="@drawable/edittextrest"
+        android:cursorVisible="false"
+        android:ems="10"
+         android:textSize="14dp"
+        android:gravity="center"
+        android:hint="Password"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="110dp"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@+id/email"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="67dp"
+        android:background="@drawable/edittextrest"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:gravity="center"
         android:hint="Username"
-        android2:ems="10"
-        android2:inputType="text" >
+        android:inputType="text"
+        android:textSize="14dp" />
+
+    <EditText
+        android:id="@+id/lastname"
+        android:layout_width="110dp"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@+id/firstname"
+        android:layout_below="@+id/firstname"
+        android:layout_marginTop="17dp"
+        android:background="@drawable/edittextrest"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Last Name"
+        android:inputType="textPersonName"
+        android:textSize="14dp" >
 
         <requestFocus />
     </EditText>
 
     <EditText
-        android2:id="@+id/email"
-        android2:layout_width="110dp"
-        android2:layout_height="40dp"
+        android:id="@+id/firstname"
+        android:layout_width="110dp"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@+id/username"
+        android:layout_below="@+id/username"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/edittextrest"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="First Name"
+        android:inputType="textPersonName"
+        android:textSize="14dp" />
+
+    <EditText
+        android:id="@+id/confirmpass"
+        android:layout_width="110dp"
+        android:layout_height="20dp"
+        android:layout_above="@+id/mobile"
+        android:layout_alignLeft="@+id/password"
+        android:background="@drawable/edittextrest"
+        android:cursorVisible="false"
+        android:ems="10"
+          android:gravity="center"
+      
+        android:hint="Confirm Password"
+        android:inputType="textPassword" />
+
+    <RadioGroup
+        android2:id="@+id/radioGroup1"
+        android2:layout_width="wrap_content"
+        android2:layout_height="wrap_content"
+        android2:layout_alignLeft="@+id/spinner"
+        android2:layout_below="@+id/spinner" > </RadioGroup>
+
+    <RadioButton
+        android2:id="@+id/radio0"
+        android2:layout_width="25dp"
+        android2:layout_height="15dp"
+        android2:layout_alignBaseline="@+id/radio1"
+        android2:layout_alignBottom="@+id/radio1"
+        android2:layout_alignRight="@+id/lastname"
+        android2:checked="true"
+        
+        android2:text="Male" />
+
+    <RadioButton
+        android2:id="@+id/radio1"
+        android2:layout_width="25dp"
+        android2:layout_height="15dp"
         android2:layout_alignLeft="@+id/lastname"
         android2:layout_below="@+id/lastname"
-        android2:layout_marginTop="30dp"
-        android:hint="@string/email"
-        android2:ems="10"
-        android2:inputType="textEmailAddress" />
+        android2:layout_marginTop="18dp"
+        android2:layout_toLeftOf="@+id/radio0"
+        android2:text="Female" />
 
-    <EditText
-        android2:id="@+id/password"
+    <Spinner
+        android2:id="@+id/spinner"
         android2:layout_width="110dp"
-        android2:layout_height="40dp"
-        android2:layout_alignLeft="@+id/signupreg"
-        android2:layout_alignTop="@+id/email"
-        android2:layout_marginTop="25dp"
-        android:hint="Password"
-        android2:ems="10"
-        android2:inputType="textPassword" />
-
-    <EditText
-        android2:id="@+id/skype"
-        android2:layout_width="110dp"
-        android2:layout_height="40dp"
-        android2:layout_alignLeft="@+id/signupreg"
-        android2:layout_below="@+id/confirmpass"
-        android:hint="Skype"
-        android2:ems="10" />
-
-    <EditText
-        android2:id="@+id/confirmpass"
-        android2:layout_width="110dp"
-        android2:layout_height="40dp"
-        android2:layout_alignLeft="@+id/signupreg"
-        android2:layout_below="@+id/password"
-        android2:ems="10"
-        android2:hint="Confirm Password"
-        android2:inputType="textPassword" />
+        android2:layout_height="20dp"
+        android2:layout_above="@+id/email"
+        android2:layout_alignLeft="@+id/email"
+        android2:layout_marginBottom="14dp"
+        android2:background="@drawable/edittextrest"
+        android2:drawSelectorOnTop="true"
+        android2:gravity="center"
+        android2:prompt="@string/age_picker" />
 
     <EditText
         android2:id="@+id/mobile"
         android2:layout_width="110dp"
-        android2:layout_height="40dp"
-        android2:layout_alignLeft="@+id/skype"
-        android2:layout_below="@+id/skype"
+        android2:layout_height="20dp"
+        android2:layout_above="@+id/skype"
+        android2:layout_alignLeft="@+id/signupreg"
+        android2:layout_marginBottom="14dp"
+        android2:background="@drawable/edittextrest"
         android2:ems="10"
+        android2:gravity="center"
         android2:hint="Mobile"
-        android2:inputType="phone" />
-
-    <Button
-        android2:id="@+id/signupreg"
-        style="?android:attr/buttonStyleSmall"
-        android2:layout_width="60dp"
-        android2:layout_height="23dp"
-        android2:layout_alignParentBottom="true"
-        android2:layout_centerHorizontal="true"
-        android2:layout_marginBottom="32dp"
-        android2:background="@drawable/signup" />
-
-    <RadioButton
-        android2:id="@+id/radio1"
-        android2:layout_width="wrap_content"
-        android2:layout_height="wrap_content"
-        android2:layout_alignParentLeft="true"
-        android2:layout_below="@+id/radio0"
-        android2:layout_marginLeft="34dp" />
-
-    <RadioButton
-        android2:id="@+id/radio0"
-        android2:layout_width="wrap_content"
-        android2:layout_height="wrap_content"
-        android2:layout_alignLeft="@+id/radio1"
-        android2:layout_below="@+id/skype"
-        android2:checked="true" />
+        android2:inputType="phone"
+        android2:textSize="14dp" />
 
     <EditText
-        android2:id="@+id/firstname"
+        android2:id="@+id/email"
         android2:layout_width="110dp"
-        android2:layout_height="40dp"
-        android2:layout_alignLeft="@+id/username"
-        android2:layout_below="@+id/radioGroup1"
+        android2:layout_height="20dp"
+        android2:layout_above="@+id/password"
+        android2:layout_alignLeft="@+id/password"
+        android2:background="@drawable/edittextrest"
+        android2:cursorVisible="false"
         android2:ems="10"
-        android2:hint="First Name"
-        android2:inputType="textPersonName" />
+        android2:gravity="center"
+        android2:hint="@string/email"
+        android2:inputType="textEmailAddress" />
 
     <EditText
-        android2:id="@+id/lastname"
+        android2:id="@+id/skype"
         android2:layout_width="110dp"
-        android2:layout_height="40dp"
-        android2:layout_alignLeft="@+id/firstname"
-        android2:layout_below="@+id/firstname"
+        android2:layout_height="20dp"
+        android2:layout_above="@+id/country"
+        android2:layout_alignLeft="@+id/country"
+        android2:background="@drawable/edittextrest"
+        android2:cursorVisible="false"
         android2:ems="10"
-        android2:hint="Last Name"
-        android2:inputType="textPersonName" />
-
-    <EditText
-        android2:id="@+id/country"
-        android2:layout_width="110dp"
-        android2:layout_height="40dp"
-        android2:layout_alignLeft="@+id/mobile"
-        android2:layout_below="@+id/mobile"
-        android2:ems="10"
-        android2:hint="Country" />
+        android2:gravity="center"
+        android2:hint="Skype"
+        android2:inputType="text" />
 
 </RelativeLayout>
