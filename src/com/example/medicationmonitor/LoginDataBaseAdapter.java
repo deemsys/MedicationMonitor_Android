@@ -5,36 +5,109 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 public class LoginDataBaseAdapter{
-		static final String DATABASE_NAME = "login.db";
-		static final int DATABASE_VERSION = 1;
-		public static final int NAME_COLUMN = 1;
-		// TODO: Create public field for each column in your table.
-		// SQL Statement to create a new database.
-		static final String DATABASE_CREATE = "create table "+"LOGIN"+
-		                             "( " +"ID"+" integer primary key autoincrement,"+ "USERNAME  text,PASSWORD text); ";
-		// Variable to hold the database instance
+	
+	 public static final String ROW_ID = "_id";
+	    public static final String USERNAME = "name";
+	    public static final String PASSWORD = "password";
+	  
+
+	    private static final String DATABASE_TABLE = "LOGIN";
+	
+		
+		
 		public  SQLiteDatabase db;
-		// Context of the application using the database.
+	
 		private final Context context;
-		// Database open/upgrade helper
-		private DataBaseHelper dbHelper;
+	
+		private DatabaseHelper dbHelper;
+		
+		private static class DatabaseHelper extends SQLiteOpenHelper {
+
+	        DatabaseHelper(Context context) {
+	            super(context, DatabaseAdapter.DATABASE_NAME,null, DatabaseAdapter.DATABASE_VERSION);
+	        }
+
+	        @Override
+			public void onCreate(SQLiteDatabase arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+
+			@Override
+			public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
+				// TODO Auto-generated method stub
+				
+			}
+		}
+		
 		public LoginDataBaseAdapter(Context _context) 
 		{
-			context = _context;
-			dbHelper = new DataBaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+			
+			this.context = _context;
+			
 		}
 		public  LoginDataBaseAdapter open() throws SQLException 
 		{
-			db = dbHelper.getWritableDatabase();
+			
+			this.dbHelper = new DatabaseHelper(this.context);
+	        this.db = this.dbHelper.getWritableDatabase();
+			
 			return this;
 		}
 		public void close() 
 		{
-			db.close();
+			dbHelper.close();
 		}
+		
+		 public void createUsers(String name, String pass){
+		        ContentValues initialValues = new ContentValues();
+		        initialValues.put(USERNAME, name);
+		        initialValues.put(PASSWORD, pass);
+		        db.insert(DATABASE_TABLE, null, initialValues);
+		    }
 
+		 public boolean deleteUser(long rowId) {
+
+		        return this.db.delete(DATABASE_TABLE, ROW_ID + "=" + rowId, null) > 0; 
+		        }
+
+		 public Cursor getAllUsers() {
+
+		        return this.db.query(DATABASE_TABLE, new String[] { ROW_ID,
+		                USERNAME, PASSWORD }, null, null, null, null, null);
+		    }
+		 public String getUser(String username) throws SQLException {
+			 
+			 Cursor cursor=db.query(DATABASE_TABLE, null, " USERNAME=?", new String[]{username}, null, null, null);
+		        if(cursor.getCount()<1) // UserName Not Exist
+		        {
+		        	cursor.close();
+		        	return "NOT EXIST";
+		        }
+			    cursor.moveToFirst();
+				String password= cursor.getString(cursor.getColumnIndex("PASSWORD"));
+				cursor.close();
+				return password;	
+
+		   
+		       
+		    }
+		 public boolean updateUser(long rowId, String name, String pass,
+		            String year){
+		        ContentValues args = new ContentValues();
+		        args.put(USERNAME, name);
+		        args.put(PASSWORD, pass);
+		        
+
+		        return this.db.update(DATABASE_TABLE, args, ROW_ID + "=" + rowId, null) >0; 
+		    }
+		 
+
+		 
 		public  SQLiteDatabase getDatabaseInstance()
 		{
 			return db;
@@ -82,6 +155,9 @@ public class LoginDataBaseAdapter{
 			
 	        String where="USERNAME = ?";
 		    db.update("LOGIN",updatedValues, where, new String[]{userName});			   
-		}		
-}
+		}
 
+
+			
+}
+								
