@@ -9,8 +9,11 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,7 +64,7 @@ public class RegisterActivity extends Activity {
           //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
              //       this, R.array.age_array, android.R.layout.simple_spinner_item);
             // adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-          //pinner.setAdapter(adapter);
+          //spinner.setAdapter(adapter);
     }
     
     
@@ -116,7 +119,7 @@ public class RegisterActivity extends Activity {
         });
 
         pass = (EditText) findViewById(R.id.password);
-        // TextWatcher would let us check validation error on the fly
+        
         pass.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 Validation.hasText(pass);
@@ -126,7 +129,7 @@ public class RegisterActivity extends Activity {
         });
         
         confirmpass = (EditText) findViewById(R.id.confirmpass);
-        // TextWatcher would let us check validation error on the fly
+      
         confirmpass.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 Validation.hasText(confirmpass);
@@ -137,7 +140,7 @@ public class RegisterActivity extends Activity {
         
         email = (EditText) findViewById(R.id.email);
         email.addTextChangedListener(new TextWatcher() {
-            // after every change has been made to this editText, we would like to check validity
+         
             public void afterTextChanged(Editable s) {
                 Validation.isEmailAddress(email, true);
             }
@@ -148,7 +151,7 @@ public class RegisterActivity extends Activity {
        mobile = (EditText) findViewById(R.id.mobile);
       mobile.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
-                Validation.isPhoneNumber(mobile, false);
+                Validation.isPhoneNumber(mobile, true);
             }
             public void beforeTextChanged(CharSequence s, int start, int count, int after){}
             public void onTextChanged(CharSequence s, int start, int before, int count){}
@@ -158,14 +161,11 @@ public class RegisterActivity extends Activity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                Validation class will check the error and display the error on respective fields
-                but it won't resist the form submission, so we need to check again before submit
-                 */
+            	
                 if ( checkValidation () )
                     submitForm();
                 else
-                    Toast.makeText(RegisterActivity.this, "Enter All Required fields with Valid Details", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this, "Enter All Required fields!", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -173,13 +173,10 @@ public class RegisterActivity extends Activity {
     private void submitForm() {
     	String userName=username.getText().toString();
 		String password=pass.getText().toString();
-	//	String confirmPassword=confirmpass.getText().toString();
-		//String email1=email.getText().toString();
-		//String mob=mobile.getText().toString();
-    	loginDataBaseAdapter.insertEntry(userName, password);
+
+    	loginDataBaseAdapter.createUsers(userName, password);
 	    Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_LONG).show();
-	  // DialogClass dgcls=null;
-	    //dgcls = new DialogClass(this,"Green","Account Successfully Created!");
+	  
 	    startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
 	    
     }
@@ -189,15 +186,22 @@ public class RegisterActivity extends Activity {
 
         if (!Validation.hasText(username)) ret = false;
         if (!Validation.isEmailAddress(email, true)) ret = false;
-        if (!Validation.isPhoneNumber(mobile, false)) ret = false;
-        if(!Validation.isequal(pass,confirmpass))ret=false;
+        if (!Validation.isPhoneNumber(mobile, true)) ret = false;
+        if(!Validation.isEqualpass(pass,confirmpass,true))ret=false;
 
         return ret;
+    }
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.
+                                                        INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        return true;
     }
 
    @Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
+	
 		super.onDestroy();
 		
 		loginDataBaseAdapter.close();
