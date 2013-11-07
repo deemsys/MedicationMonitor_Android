@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/addmeds"
+    android:orientation="vertical" >
+
+   <com.example.medicationmonitor.SegmentedRadioGroup
+        android:id="@+id/radioGroup1"
+       android:layout_width="280dp"
+       android:layout_height="30dp"
+       android:layout_below="@+id/meddir"
+       android:layout_centerHorizontal="true"
+       android:layout_marginTop="16dp"
+       android:orientation="horizontal" 
+       android:background="@drawable/backseg">
+
+       <RadioButton
+           android:id="@+id/once"
+           android:layout_width="140dp"
+           android:layout_height="30dp"
+           android:button="@drawable/segment_button"
+           android:checked="true"
+           android:gravity="center"
+           android:text="Once"
+           android:textColor="#ffffff" />
+
+       <RadioButton
+           android:id="@+id/daily"
+           android:layout_width="match_parent"
+           android:layout_height="30dp"
+           android:button="@drawable/segment_button"
+           android:gravity="center"
+           android:text="Daily"
+           android:textColor="#ffffff" />
+
+  </com.example.medicationmonitor.SegmentedRadioGroup>
+   
+      
+
+       
+
+        <!-- To display picture taken -->
+
+       
+
+
+   <EditText
+       android:id="@+id/meddir"
+       android:layout_width="174dp"
+       android:layout_height="30dp"
+       android:layout_alignRight="@+id/radioGroup1"
+       android:layout_below="@+id/medname"
+       android:layout_marginRight="14dp"
+       android:layout_marginTop="56dp"
+       android:background="@drawable/edittextrest"
+       android:ems="10"
+       android:inputType="text" />
+
+   <EditText
+       android:id="@+id/medname"
+       android:layout_width="174dp"
+       android:layout_height="30dp"
+       android:layout_alignLeft="@+id/meddir"
+       android:layout_alignParentTop="true"
+       android:layout_marginTop="64dp"
+       android:background="@drawable/edittextrest"
+       android:ems="10"
+       android:inputType="text" />
+
+   <Button
+       android:id="@+id/captureimg"
+       style="?android:attr/buttonStyleSmall"
+       android:layout_width="60dp"
+       android:layout_height="35dp"
+       android:layout_alignLeft="@+id/meddir"
+       android:layout_below="@+id/medname"
+       android:layout_marginTop="14dp"
+       android:onClick="onClick"
+       android:background="@drawable/noimg" />
+
+ <LinearLayout
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content" >
+</LinearLayout>
+
+   <ImageView
+       android:id="@+id/imgview"
+       android:layout_width="300dp"
+       android:layout_height="200dp"
+       android:layout_below="@+id/radioGroup1"
+       android:layout_centerHorizontal="true"
+       android:layout_marginTop="21dp" />
+
+   <Button
+       android:id="@+id/save"
+       style="?android:attr/buttonStyleSmall"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignParentTop="true"
+       android:onClick="onClickAdd"
+       android:layout_alignRight="@+id/radioGroup1"
+       android:text="save" />
+
+   <ImageView
+       android:id="@+id/imgPreview"
+       android:layout_width="40dp"
+       android:layout_height="30dp"
+       android:layout_alignTop="@+id/captureimg"
+       android:layout_toRightOf="@+id/captureimg" />
+
+</RelativeLayout>

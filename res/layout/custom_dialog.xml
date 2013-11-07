@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="600dp"
+    android:layout_height="110dp"
+    android:orientation="vertical"
+    android:background="#FFEFDB" >
+
+    <Button
+        android:id="@+id/button1"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="40dp"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/alert"
+        android:layout_marginRight="124dp"
+        android:text="@string/ok" />
+
+    <TextView
+        android:id="@+id/alert"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="16dp"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+        android:paddingTop="5dp"
+        android:textSize="17sp" />
+  
+    </RelativeLayout>
