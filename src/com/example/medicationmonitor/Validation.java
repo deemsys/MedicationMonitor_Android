@@ -5,15 +5,15 @@ import java.util.regex.Pattern;
 public class Validation {
 
     // Regular Expression
-    // you can change the expression based on your need
+   
     private static final String EMAIL_REGEX = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     private static final String PHONE_REGEX ="[0-9]{10,13}";
 
     // Error Messages
-    private static final String REQUIRED_MSG = "required";
-    private static final String EMAIL_MSG = "invalid email";
-    private static final String PHONE_MSG = "invalid mobile number";
-    private static final String PASS_MSG="Password Does not Match";
+    private static final String REQUIRED_MSG = "Invalid User Name";
+    private static final String EMAIL_MSG = "Invalid email";
+    private static final String PHONE_MSG = "Invalid Mobile Number";
+    private static final String PASS_MSG="Password Does Not Match";
     // email validation
     public static boolean isEmailAddress(EditText editText, boolean required) {
         return isValid(editText, EMAIL_REGEX, EMAIL_MSG, required);
@@ -25,7 +25,10 @@ public class Validation {
         return isValid(editText, PHONE_REGEX, PHONE_MSG, required);
     }
     
-    
+    public static boolean isEqualpass(EditText editText,EditText editText1,boolean required){
+    	
+    	return isequal(editText,editText1,required);
+    }
     
         
     
@@ -62,12 +65,15 @@ public class Validation {
 
         return true;
     }
-    public static boolean isequal(EditText pass, EditText confirmpass) {
+    public static boolean isequal(EditText pass, EditText confirmpass,boolean required ) {
         String text = pass.getText().toString().trim();
         String text1 = confirmpass.getText().toString().trim();
         pass.setError(null);
        confirmpass.setError(null);
+       if ( required && !hasText(pass)&& !hasText(confirmpass) ) return false;
+       
      if(!text.equals(text1)){
+    	 pass.setError(PASS_MSG);
         	confirmpass.setError(PASS_MSG);
         	return false;
         	}
