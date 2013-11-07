@@ -24,9 +24,19 @@
         <item>91-100</item>
       
     </string-array>-->
+    <string name="male">Male</string>
+    <string name="female">Female</string>
         <string name="email">Email</string>
         <string name="tab_home">HOME</string>
         <string name="tab_medications">MEDICATIONS</string>
+        <string name="username">User Name</string>
+        <color name="black">#ffffff</color>
+        <color name="white">#000000</color>
+        <string name="txtEmpty">View Medications Here</string>
+       <string name="setselecteddate">Select date</string>
+       <string name="ok">OK</string>
+      
+       
        
        
 </resources>
