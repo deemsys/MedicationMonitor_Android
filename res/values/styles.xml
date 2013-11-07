@@ -16,5 +16,27 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
+<!-- Application theme.
+    <declare-styleable name="CompoundButton">
+		<attr name="android:button" />
+	</declare-styleable> -->
+  
+   <style name="Dialog" parent="@android:style/Theme.Dialog">
+            <item name="android:windowTitleStyle">@style/PauseDialogTitle</item>
+        </style>
 
+        <style name="PauseDialogTitle" parent="@android:style/TextAppearance.DialogWindowTitle">
+            <item name="android:gravity">center_horizontal</item>
+        </style>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
 </resources>
