@@ -4,56 +4,59 @@
     android:background="@drawable/loginimg" >
 
     <Button
-        android:id="@+id/signin"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/signup"
+        android:layout_width="65dp"
+        android:layout_height="30dp"
+        android:layout_alignLeft="@+id/signin"
+        android:layout_below="@+id/checkbox1"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/signup" />
+
+    <CheckBox
+        android:id="@+id/checkbox1"
+        android:layout_width="16dp"
+        android:layout_height="26dp"
         android:layout_alignLeft="@+id/password"
-        android:layout_below="@+id/username"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="26dp"
-         android:background="@drawable/signin"
-        android:text="" />
+        android:layout_below="@+id/signin"
+        android:layout_marginLeft="16dp"
+        android:button="@layout/custom_checkbox" />
 
     <Button
-        android:id="@+id/signup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/signin"
-        android:layout_below="@+id/signin"
-        android:layout_marginTop="53dp"
-        android:background="@drawable/signup" />
+        android:id="@+id/signin"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="65dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/username"
+        android:layout_marginTop="26dp"
+        android:layout_toRightOf="@+id/checkbox1"
+        android:background="@drawable/signin" />
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="135dp"
-        android:layout_height="33dp"
-        android:layout_alignLeft="@+id/username"
+        android:layout_width="132dp"
+        android:layout_height="37dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="238dp"
+        android:layout_alignRight="@+id/username"
+        android:layout_marginTop="234dp"
         android:background="@drawable/edittext_img"
+        android:cursorVisible="false"
         android:ems="10"
-         android:cursorVisible="false"
-        android:inputType="textPassword" />
+        android:inputType="textPassword" >
+
+        <requestFocus />
+    </EditText>
 
     <EditText
         android:id="@+id/username"
-        android:layout_width="135dp"
-        android:layout_height="32dp"
+        android:layout_width="132dp"
+        android:layout_height="37dp"
         android:layout_alignBottom="@+id/password"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="43dp"
-        android:layout_marginRight="69dp"
+        android:layout_marginBottom="40dp"
+        android:layout_marginRight="74dp"
         android:background="@drawable/edittext_img"
         android:cursorVisible="false"
         android:ems="10"
         android:inputType="text" />
-
-    <CheckBox
-        android:id="@+id/checkBox1"
-        android:layout_width="30dp"
-        android:layout_height="20dp"
-        android:layout_below="@+id/signin"
-        android:layout_toLeftOf="@+id/signup" />
     
 </RelativeLayout>
